@@ -12,3 +12,4 @@ E:\Projects\TodoCLI\obj\Debug\net8.0\refint\TodoCLI.dll
 E:\Projects\TodoCLI\obj\Debug\net8.0\TodoCLI.pdb
 E:\Projects\TodoCLI\obj\Debug\net8.0\TodoCLI.genruntimeconfig.cache
 E:\Projects\TodoCLI\obj\Debug\net8.0\ref\TodoCLI.dll
+E:\Projects\TodoCLI\obj\Debug\net8.0\TodoCLI.sourcelink.json
