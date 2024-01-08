@@ -1,0 +1,14 @@
+E:\Projects\TodoCLI\bin\Debug\net8.0\TodoCLI.exe
+E:\Projects\TodoCLI\bin\Debug\net8.0\TodoCLI.deps.json
+E:\Projects\TodoCLI\bin\Debug\net8.0\TodoCLI.runtimeconfig.json
+E:\Projects\TodoCLI\bin\Debug\net8.0\TodoCLI.dll
+E:\Projects\TodoCLI\bin\Debug\net8.0\TodoCLI.pdb
+E:\Projects\TodoCLI\obj\Debug\net8.0\TodoCLI.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\TodoCLI\obj\Debug\net8.0\TodoCLI.AssemblyInfoInputs.cache
+E:\Projects\TodoCLI\obj\Debug\net8.0\TodoCLI.AssemblyInfo.cs
+E:\Projects\TodoCLI\obj\Debug\net8.0\TodoCLI.csproj.CoreCompileInputs.cache
+E:\Projects\TodoCLI\obj\Debug\net8.0\TodoCLI.dll
+E:\Projects\TodoCLI\obj\Debug\net8.0\refint\TodoCLI.dll
+E:\Projects\TodoCLI\obj\Debug\net8.0\TodoCLI.pdb
+E:\Projects\TodoCLI\obj\Debug\net8.0\TodoCLI.genruntimeconfig.cache
+E:\Projects\TodoCLI\obj\Debug\net8.0\ref\TodoCLI.dll
