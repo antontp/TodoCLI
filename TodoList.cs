@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 class TodoList
 {
     private List<Todo> todos;
@@ -9,10 +10,20 @@ class TodoList
         totalTasks = todos.Count;
     }
 
-    public void newTodo(string[] args) {
+    public void newTodo(string what, int todoPrio, string color) {
+        todos.Add(new Todo(what, todoPrio, color));
+        Console.WriteLine($"created new todo!");
     }
     public void removeTodo(int id) {
-        todos.Find(do => do.GetId == id);
+       Todo? found = todos.Find(t => t.GetId() == id);
+       Console.WriteLine(found);
+        if (found != null) {
+            todos.Remove(found);
+            Console.WriteLine($"Removed todo with id {found.GetId()}");
+        }
+        else {
+            Console.WriteLine($"Unable to find todo with id {id}");
+        }
     }
     public void markTodo() {
 

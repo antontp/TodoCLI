@@ -6,7 +6,7 @@ public class Todo {
     private int priority;
     private DateTime createdTime;
 
-    public Todo(string text, string color, int priority) {
+    public Todo(string text,int priority, string color) {
         this.text = text;
         this.color = color;
         this.priority = priority;

@@ -6,6 +6,3 @@ void startProgram() {
     CommandCenter cc = new CommandCenter();
     cc.init();
 }
-
-
-

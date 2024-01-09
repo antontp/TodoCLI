@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\KoLi\\.nuget\\packages\\": {}
+    "C:\\Users\\KoLiMi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projects\\TodoCLI\\TodoCLI.csproj",
+      "projectUniqueName": "C:\\Users\\KoLiMi\\Documents\\Projects\\TodoCLI\\TodoCLI.csproj",
       "projectName": "TodoCLI",
-      "projectPath": "E:\\Projects\\TodoCLI\\TodoCLI.csproj",
-      "packagesPath": "C:\\Users\\KoLi\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\TodoCLI\\obj\\",
+      "projectPath": "C:\\Users\\KoLiMi\\Documents\\Projects\\TodoCLI\\TodoCLI.csproj",
+      "packagesPath": "C:\\Users\\KoLiMi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\KoLiMi\\Documents\\Projects\\TodoCLI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\KoLi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\KoLiMi\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
