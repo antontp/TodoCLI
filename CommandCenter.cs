@@ -1,14 +1,14 @@
 class CommandCenter {    
 
-    TodoList listTodo;
+    TodoList todos;
     Messages msg;
     public CommandCenter() {
-        listTodo = new TodoList();
+        todos = new TodoList();
         msg = new Messages();
     }
     public void init() {
         msg.welcomeMessage();
-        Console.WriteLine(listTodo);
+        todos.showTodos();
         msg.displayCommands();
         startCLI();
     }
@@ -36,10 +36,10 @@ class CommandCenter {
                         Console.WriteLine("editing...");
                         break;
                     case "show" or "s":
-                        Console.WriteLine(listTodo);
+                        todos.showTodos();
                         break;
                     case "quit" or "q":
-                        Console.WriteLine("Bye!");
+                        msg.exitMessage();
                         System.Environment.Exit(1);
                         break;
                     default:
@@ -51,8 +51,6 @@ class CommandCenter {
                 Console.WriteLine("No command entered... try again");
             }
         }
-    }
-    private void add(string[] args) {
     }
 }
 

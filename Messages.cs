@@ -12,6 +12,10 @@ class Messages
         Console.WriteLine(@"                                                                                                        ");
     }
 
+    public void exitMessage() {
+        Console.WriteLine("Bye!");
+    }
+
     public void displayCommands() {
         Console.WriteLine("Available commands:");
         Console.WriteLine();

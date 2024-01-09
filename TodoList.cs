@@ -9,6 +9,20 @@ class TodoList
         totalTasks = todos.Count;
     }
 
+    public void newTodo(string[] args) {
+    }
+    public void removeTodo(int id) {
+        todos.Find(do => do.GetId == id);
+    }
+    public void markTodo() {
+
+    }
+    public void editTodo() {
+
+    }
+
+    public void showTodos() {Console.WriteLine(this.ToString());}
+
     private List<Todo> GenerateRandomTodos(int count) {
         List<Todo> todos = new List<Todo>();
         Random random = new Random();
@@ -28,24 +42,29 @@ class TodoList
 
         return todos;
     }
-
     public override string ToString() {
         string output = "";
 
-        output += "┌─────────────────────────────┬─────────┬───────────┬────────────────────────┐\n";
-        output += "│             Text            │  Color  │  Priority │      Created Time      │\n";
-        output += "├─────────────────────────────┼─────────┼───────────┼────────────────────────┤\n";
+        int idColumnWidth = 5; // Define the width of the ID column, for example, ID up to 99999
+        string idHeader = "ID".PadLeft((idColumnWidth + 1) / 2 + "ID".Length / 2).PadRight(idColumnWidth);
+
+        output +=  "┌─────┬─────────────────────────────┬─────────┬───────────┬────────────────────────┐\n";
+        output += $"│{idHeader}│             Text            │  Color  │  Priority │      Created Time      │\n";
+        output +=  "├─────┼─────────────────────────────┼─────────┼───────────┼────────────────────────┤\n";
 
         foreach (Todo todo in todos) {
-            // Adjust the alignment and width as necessary
+            // Adjust the alignment and width for the ID column as necessary
+            string idColumn = todo.GetId().ToString().PadLeft((idColumnWidth + 1) / 2).PadRight(idColumnWidth);
+            // Adjust the remaining alignments and widths as necessary
             string textColumn = todo.GetText().PadRight(27);
             string colorColumn = todo.GetColor().PadRight(7);
             string priorityColumn = todo.GetPriority().ToString().PadRight(9);
             string createdTimeColumn = todo.GetCreatedTime().ToString().PadRight(22);
 
-            output += $"│ {textColumn} │ {colorColumn} │ {priorityColumn} │ {createdTimeColumn} │\n";
+            output += $"│{idColumn}│ {textColumn} │ {colorColumn} │ {priorityColumn} │ {createdTimeColumn} │\n";
         }
 
-        return output + "└─────────────────────────────┴─────────┴───────────┴────────────────────────┘\n";
+        return output + "└─────┴─────────────────────────────┴─────────┴───────────┴────────────────────────┘\n";
     }
+
 }
