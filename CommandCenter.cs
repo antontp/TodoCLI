@@ -77,7 +77,22 @@ class CommandCenter {
                         break;
 
                     case "mark" or "m":
-                        Console.WriteLine("done...");
+                        if (inputBites.Length != 3) {
+                            Console.WriteLine("Wrong use of 'mark'");
+                            break;
+                        }
+                        if (!String.Equals(inputBites[2], "done") && !String.Equals(inputBites[2], "undone")) {
+                            Console.WriteLine("Wrong use of 'mark'");
+                            break;
+                        }
+                        bool mark = String.Equals(inputBites[2], "done") ? true : false;
+                        try {
+                            todoId = int.Parse(inputBites[1]);
+                            todos.markTodo(todoId, mark);
+                        }
+                        catch (FormatException e) {
+                            Console.WriteLine(e.Message);
+                        }
                         break;
 
                     case "clean" or "c":

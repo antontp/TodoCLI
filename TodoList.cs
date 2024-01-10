@@ -25,8 +25,15 @@ class TodoList
             Console.WriteLine($"Unable to find todo with id {id}");
         }
     }
-    public void markTodo() {
-
+    public void markTodo(int id, bool mark) {
+       Todo? found = todos.Find(t => t.Id == id);
+        if (found != null) {
+            found.Status = mark;
+            Console.WriteLine($"Todo \"{found.Description}\" with id {found.Id} marked [{(mark ? "DONE" : "UNDONE")}]");
+        }
+        else {
+            Console.WriteLine($"Unable to find todo with id {id}");
+        }
     }
 
     public void editTodo() {
