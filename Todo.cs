@@ -1,46 +1,48 @@
 public class Todo {
     private static int idCounter = 0;
-    private int id;
-    private string text;
-    private string color;
-    private int priority;
+    public int Id { get; }
+    public bool Status { get; set; }
+    public string Description { get; set; }
+    public string Color { get; set; }
+    public int Priority { get; set; }
+
     private DateTime createdTime;
 
-    public Todo(string text,int priority, string color) {
-        this.text = text;
-        this.color = color;
-        this.priority = priority;
+    public Todo(string description, int priority, string color) {
+        this.Status = false;
+        this.Description = description;
+        this.Color = color;
+        this.Priority = priority;
         createdTime = DateTime.Now;
 
-        id = idCounter++;
+        Id = idCounter++;
     }
+    // public int GetId() {
+    //     return id;
+    // }
 
-    public int GetId() {
-        return id;
-    }
+    // public string GetDescription() {
+    //     return description;
+    // }
 
-    public string GetText() {
-        return text;
-    }
+    // public string GetColor() {
+    //     return color;
+    // }
 
-    public string GetColor() {
-        return color;
-    }
-
-    public int GetPriority() {
-        return priority;
-    }
+    // public int GetPriority() {
+    //     return priority;
+    // }
 
     public DateTime GetCreatedTime() {
         return createdTime;
     }
 
     public override string ToString() {
-        return text + " - " + priority;
+        return $"TODO [ {Status} | {Description} | {Color} | {Priority}]";
     }
 
     public override int GetHashCode() {
-        return id;
+        return Id;
     }
 
     public override bool Equals(object? obj) {
@@ -52,6 +54,6 @@ public class Todo {
 
     public bool Equals(Todo other) {
         if (other == null) return false;
-        return (this.id.Equals(other.GetId()));
+        return (this.Id.Equals(other.Id));
     }
 }

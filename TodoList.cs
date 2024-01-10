@@ -10,16 +10,16 @@ class TodoList
         totalTasks = todos.Count;
     }
 
-    public void newTodo(string what, int todoPrio, string color) {
-        todos.Add(new Todo(what, todoPrio, color));
+    public void newTodo(string description, int todoPrio, string color) {
+        todos.Add(new Todo(description, todoPrio, color));
         Console.WriteLine($"created new todo!");
     }
+
     public void removeTodo(int id) {
-       Todo? found = todos.Find(t => t.GetId() == id);
-       Console.WriteLine(found);
+       Todo? found = todos.Find(t => t.Id == id);
         if (found != null) {
             todos.Remove(found);
-            Console.WriteLine($"Removed todo with id {found.GetId()}");
+            Console.WriteLine($"Removed todo \"{found.Description}\" with id {found.Id}");
         }
         else {
             Console.WriteLine($"Unable to find todo with id {id}");
@@ -28,6 +28,7 @@ class TodoList
     public void markTodo() {
 
     }
+
     public void editTodo() {
 
     }
@@ -47,35 +48,44 @@ class TodoList
             string randomColor = colors[random.Next(colors.Length)];
             int randomPriority = random.Next(1, 5); // Adjust the priority range as needed
 
-            Todo todo = new Todo(randomText, randomColor, randomPriority);
+            Todo todo = new Todo(randomText, randomPriority, randomColor);
             todos.Add(todo);
         }
 
         return todos;
     }
+
     public override string ToString() {
+        int maxDescriptionWidth = todos.Any() ? todos.Max(t => t.Description.Length) : 0;
+        int descColumnWidth = Math.Max("Description".Length, maxDescriptionWidth);
+        int idColumnWidth = 5;  // Define your idColumnWidth here. 
+
+        string idHeader = "ID".PadLeft((idColumnWidth + "ID".Length) / 2).PadRight(idColumnWidth);
+        string doneHeader = "Done".PadLeft(("Done".Length + 1) / 2).PadRight(5);
+        string descHeader = "Description".PadLeft((descColumnWidth + "Description".Length) / 2).PadRight(descColumnWidth);
+        string colorHeader = "Color".PadLeft((7 + "Color".Length) / 2).PadRight(7);
+        string priorityHeader = "Priority".PadLeft((3 + "Priority".Length) / 2).PadRight(5);
+        string createdHeader = "Created Time".PadLeft((22 + "Created Time".Length) / 2).PadRight(22);
+
         string output = "";
-
-        int idColumnWidth = 5; // Define the width of the ID column, for example, ID up to 99999
-        string idHeader = "ID".PadLeft((idColumnWidth + 1) / 2 + "ID".Length / 2).PadRight(idColumnWidth);
-
-        output +=  "┌─────┬─────────────────────────────┬─────────┬───────────┬────────────────────────┐\n";
-        output += $"│{idHeader}│             Text            │  Color  │  Priority │      Created Time      │\n";
-        output +=  "├─────┼─────────────────────────────┼─────────┼───────────┼────────────────────────┤\n";
+        output += "┌─────┬─────┬" + new String('─', descColumnWidth + 2) + "┬──────────┬─────────┬────────────────────────┐\n";
+        output += $"│{idHeader}│{doneHeader}│ {descHeader} │ {priorityHeader} │ {colorHeader} │ {createdHeader} │\n";
+        output += "├─────┼─────┼" + new String('─', descColumnWidth + 2) + "┼──────────┼─────────┼────────────────────────┤\n";
 
         foreach (Todo todo in todos) {
-            // Adjust the alignment and width for the ID column as necessary
-            string idColumn = todo.GetId().ToString().PadLeft((idColumnWidth + 1) / 2).PadRight(idColumnWidth);
-            // Adjust the remaining alignments and widths as necessary
-            string textColumn = todo.GetText().PadRight(27);
-            string colorColumn = todo.GetColor().PadRight(7);
-            string priorityColumn = todo.GetPriority().ToString().PadRight(9);
+            string idColumn = todo.Id.ToString().PadLeft((idColumnWidth + 1) / 2).PadRight(idColumnWidth);
+            string doneColumn = todo.Status ? " [x]".PadRight(5) : " [ ]".PadRight(5);
+            string descColumn = todo.Description.PadRight(descColumnWidth);
+            string priorityColumn = todo.Priority.ToString().PadRight(8);
+            string colorColumn = todo.Color.PadRight(7);
             string createdTimeColumn = todo.GetCreatedTime().ToString().PadRight(22);
 
-            output += $"│{idColumn}│ {textColumn} │ {colorColumn} │ {priorityColumn} │ {createdTimeColumn} │\n";
+            output += $"│{idColumn}│{doneColumn}│ {descColumn} │ {priorityColumn} │ {colorColumn} │ {createdTimeColumn} │\n";
         }
 
-        return output + "└─────┴─────────────────────────────┴─────────┴───────────┴────────────────────────┘\n";
+        output += "└─────┴─────┴" + new String('─', descColumnWidth + 2) + "┴──────────┴─────────┴────────────────────────┘\n";
+
+        return output;
     }
 
 }

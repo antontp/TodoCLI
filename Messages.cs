@@ -12,6 +12,10 @@ class Messages
         Console.WriteLine(@"                                                                                                        ");
     }
 
+    public void initMessage() {
+        Console.WriteLine("enter 'help' or 'h' to see available commands");
+    }
+
     public void exitMessage() {
         Console.WriteLine("Bye!");
     }
@@ -20,7 +24,7 @@ class Messages
         Console.WriteLine("Available commands:");
         Console.WriteLine();
 
-        Console.WriteLine("new (n) [what to do] [priority] [color]");
+        Console.WriteLine("new (n) \"[description]\" [priority] [color]");
         Console.WriteLine("\tcreates a new todo\n");
 
         Console.WriteLine("remove (r) [todo id]");
@@ -32,11 +36,14 @@ class Messages
         Console.WriteLine("clean (c)");
         Console.WriteLine("\tdeletes all todods marked 'done'\n");
 
-        Console.WriteLine("edit (e) [todo id]");
+        Console.WriteLine("edit (e) [todo id], [\"description\"/priority/color], [the change]");
         Console.WriteLine("\tchange todo\n");
 
         Console.WriteLine("show (s)");
         Console.WriteLine("\tshow all todos\n");
+
+        Console.WriteLine("help (h)");
+        Console.WriteLine("\tshow available commands\n");
 
         Console.WriteLine("quit (q)");
         Console.WriteLine("\texit TodoCLI\n");

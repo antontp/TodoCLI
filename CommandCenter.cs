@@ -1,53 +1,74 @@
+using System.Text.RegularExpressions;
 class CommandCenter {    
 
     TodoList todos;
     Messages msg;
+    
+    Regex descriptionRegex;
     public CommandCenter() {
+
         todos = new TodoList();
         msg = new Messages();
+        descriptionRegex = new Regex("\"([^\"]*)\"");
+
     }
     public void init() {
+
         msg.welcomeMessage();
         todos.showTodos();
-        msg.displayCommands();
+        msg.initMessage();
         startCLI();
+
     }
     private void startCLI() {
+
         while (true) {
+
             Console.Write(":");
             string? input = Console.ReadLine();
+            Console.WriteLine();
+
             if (input != null) {
-                string[] input_bites = input.Split(' ');
-                Console.WriteLine();
-                switch (input_bites[0]) {
+
+                string command = Regex.Replace(input.Split()[0], @"[^0-9a-zA-Z\ ]+", "");
+                string[] inputBites = input.Split(' ');
+
+                switch (command) {
 
                     case "new" or "n":
-                        if (input_bites.Length != 4) {
-                            Console.WriteLine("Wrong use of remove");
+                        // extracting description between quotation marks
+                        Match match = descriptionRegex.Match(input);
+                        if (!match.Success) {
+                            Console.WriteLine("use quotation marks between description!");
                             break;
                         }
-                        Console.WriteLine("adding...");
-                        string what = input_bites[1];
-                        string color = input_bites[3];
+                        string description = match.Groups[1].Value;
+
+                        // extracting color and priority
+                        string[] attributes = input.Split('\"')[2].Trim().Split(' ');
+                        if (attributes.Length != 2) {
+                            Console.WriteLine("Wrong use of 'new'");
+                            break;
+                        }
+                        string color = attributes[1];
                         int todoPrio;
                         try {
-                            todoPrio = int.Parse(input_bites[2]);
-                            todos.newTodo(what, todoPrio, color);
+                            todoPrio = int.Parse(attributes[0]);
+                            todos.newTodo(description, todoPrio, color);
                         }
                         catch (FormatException e) {
-                            Console.WriteLine("Wrong use of 'new'");
+                            Console.WriteLine(e.Message);
                         }
                         break;
 
                     case "remove" or "r":
-                        if (input_bites.Length != 2) {
+                        if (inputBites.Length != 2) {
                             Console.WriteLine("Wrong use of 'remove'");
                             break;
                         }
-                        Console.WriteLine("removing...");
                         int todoId;
                         try {
-                            todoId = int.Parse(input_bites[1]);
+                            todoId = int.Parse(inputBites[1]);
                             todos.removeTodo(todoId);
                         }
                         catch (FormatException e) {
@@ -70,7 +91,11 @@ class CommandCenter {
                     case "show" or "s":
                         todos.showTodos();
                         break;
-
+                    
+                    case "help" or "h":
+                        msg.displayCommands();
+                        break;
+                    
                     case "quit" or "q":
                         msg.exitMessage();
                         System.Environment.Exit(1);
@@ -80,6 +105,7 @@ class CommandCenter {
                         Console.WriteLine($"{input} is not a command... try again");
                         break;
                 }
+                // todos.showTodos();
             }
             else {
                 Console.WriteLine("No command entered... try again");
