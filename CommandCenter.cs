@@ -96,7 +96,7 @@ class CommandCenter {
                         break;
 
                     case "clean" or "c":
-                        Console.WriteLine("cleaning...");
+                        todos.cleanTodos();
                         break;
 
                     case "edit" or "e":

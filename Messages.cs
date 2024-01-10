@@ -32,15 +32,17 @@ class Messages
 
         Console.WriteLine("mark (m) [todo id] [done/undone]");
         Console.WriteLine("\tchanges todo status\n");
-
-        // Might add "mark (m) all [done/undone]
+        // Might add mark (m) all [done/undone]
         // Marks all done/undone
 
         Console.WriteLine("clean (c)");
         Console.WriteLine("\tdeletes all todods marked 'done'\n");
 
-        Console.WriteLine("edit (e) [todo id], [\"description\"/priority/color], [the change]");
+        Console.WriteLine("edit (e) [todo id] [\"description\"/priority/color] [the change]");
         Console.WriteLine("\tchange todo\n");
+
+        // undo (u)
+        // undo last action
 
         Console.WriteLine("show (s)");
         Console.WriteLine("\tshow all todos\n");

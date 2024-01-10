@@ -36,8 +36,21 @@ class TodoList
         }
     }
 
-    public void editTodo() {
+    public void cleanTodos() {
+        int todosDeleted = 0;
+        List<Todo> todosCopy = new List<Todo>(todos);
 
+        foreach (Todo todo in todosCopy) {
+            if (todo.Status) {
+                todos.Remove(todo);
+                todosDeleted++;
+            }
+        }
+        Console.WriteLine($"{todosDeleted} todos cleaned");
+    }
+
+    public void editTodo(int id, string attribute, string change) {
+        
     }
 
     public void showTodos() {Console.WriteLine(this.ToString());}
