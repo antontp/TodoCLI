@@ -100,7 +100,28 @@ class CommandCenter {
                         break;
 
                     case "edit" or "e":
-                        Console.WriteLine("editing...");
+                        // extracting the change between quotation marks
+                        match = descriptionRegex.Match(input);
+                        if (!match.Success) {
+                            Console.WriteLine("use quotation marks between description!");
+                            break;
+                        }
+                        string theChange = match.Groups[1].Value;
+
+                        // extracting attribute
+                        string attribute = inputBites[2];
+                        if (!String.Equals(attribute, "description") && !String.Equals(attribute, "color") && 
+                        !String.Equals(attribute, "priority")) {
+                            Console.WriteLine("Wrong use of 'edit'");
+                            break;
+                        }
+                        try {
+                            todoId = int.Parse(inputBites[1]);
+                            todos.editTodo(todoId, attribute, theChange);
+                        }
+                        catch (FormatException e) {
+                            Console.WriteLine(e.Message);
+                        }
                         break;
 
                     case "show" or "s":

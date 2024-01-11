@@ -38,7 +38,7 @@ class Messages
         Console.WriteLine("clean (c)");
         Console.WriteLine("\tdeletes all todods marked 'done'\n");
 
-        Console.WriteLine("edit (e) [todo id] [\"description\"/priority/color] [the change]");
+        Console.WriteLine("edit (e) [todo id] \"[description/priority/color]\" \"[the change]\"");
         Console.WriteLine("\tchange todo\n");
 
         // undo (u)

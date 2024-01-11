@@ -50,7 +50,29 @@ class TodoList
     }
 
     public void editTodo(int id, string attribute, string change) {
-        
+        Todo? found = todos.Find(t => t.Id == id);
+        if (found == null) {
+            Console.WriteLine($"Unable to find todo with id {id}");
+            return;
+        }
+        switch (attribute) {
+            case "color":
+                found.Color = change;
+                break;
+            case "priority":
+                try {
+                    int prio = int.Parse(change);
+                    found.Priority = prio;
+                }
+                catch (FormatException e) {
+                    Console.WriteLine(e.Message);
+                }
+                break;
+            default:
+                found.Description = change;
+                break;
+        }
+        Console.WriteLine($"Todo with id {found.Id} changed!");
     }
 
     public void showTodos() {Console.WriteLine(this.ToString());}
