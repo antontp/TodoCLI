@@ -6,7 +6,8 @@ class TodoList
     int totalTasks = 0;
 
     public TodoList() {
-        todos = GenerateRandomTodos(5);
+        // todos = GenerateRandomTodos(5);
+        todos = new List<Todo>();
         totalTasks = todos.Count;
     }
 
