@@ -143,6 +143,9 @@ class CommandCenter {
                     
                     case "quit" or "q":
                         msg.exitMessage();
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ResetColor();
                         System.Environment.Exit(1);
                         break;
 

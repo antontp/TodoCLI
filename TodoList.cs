@@ -4,10 +4,11 @@ class TodoList
 {
     private List<Todo> todos;
     int totalTasks = 0;
+    private ColorPrinter cp = new ColorPrinter();
 
     public TodoList() {
-        // todos = GenerateRandomTodos(5);
-        todos = new List<Todo>();
+        todos = GenerateRandomTodos(5);
+        // todos = new List<Todo>();
         totalTasks = todos.Count;
     }
 
@@ -76,14 +77,32 @@ class TodoList
         Console.WriteLine($"Todo with id {found.Id} changed!");
     }
 
-    public void showTodos() {Console.WriteLine(this.ToString());}
+    // public void showTodos() {Console.WriteLine(this.ToString());}
 
     private List<Todo> GenerateRandomTodos(int count) {
         List<Todo> todos = new List<Todo>();
         Random random = new Random();
 
         string[] texts = { "Buy groceries", "Finish homework", "Call mom", "Go for a run", "Read a book", "Pay bills" };
-        string[] colors = { "Red", "Blue", "Green", "Yellow", "Orange" };
+        string[] colors = 
+            {
+                "Black",
+                "DarkBlue",
+                "DarkGreen",
+                "DarkCyan",
+                "DarkRed",
+                "DarkMagenta",
+                "DarkYellow",
+                "Gray",
+                "DarkGray",
+                "Blue",
+                "Green",
+                "Cyan",
+                "Red",
+                "Magenta",
+                "Yellow",
+                "White"
+            };
 
         for (int i = 0; i < count; i++)
         {
@@ -98,7 +117,40 @@ class TodoList
         return todos;
     }
 
-    public override string ToString() {
+    // public override string ToString() {
+    //     int maxDescriptionWidth = todos.Any() ? todos.Max(t => t.Description.Length) : 0;
+    //     int descColumnWidth = Math.Max("Description".Length, maxDescriptionWidth);
+    //     int idColumnWidth = 5;  // Define your idColumnWidth here. 
+
+    //     string idHeader = "ID".PadLeft((idColumnWidth + "ID".Length) / 2).PadRight(idColumnWidth);
+    //     string doneHeader = "Done".PadLeft(("Done".Length + 1) / 2).PadRight(5);
+    //     string descHeader = "Description".PadLeft((descColumnWidth + "Description".Length) / 2).PadRight(descColumnWidth);
+    //     string colorHeader = "Color".PadLeft((7 + "Color".Length) / 2).PadRight(7);
+    //     string priorityHeader = "Priority".PadLeft((3 + "Priority".Length) / 2).PadRight(5);
+    //     string createdHeader = "Created Time".PadLeft((22 + "Created Time".Length) / 2).PadRight(22);
+
+    //     string output = "";
+    //     output += "┌─────┬─────┬" + new String('─', descColumnWidth + 2) + "┬──────────┬─────────┬────────────────────────┐\n";
+    //     output += $"│{idHeader}│{doneHeader}│ {descHeader} │ {priorityHeader} │ {colorHeader} │ {createdHeader} │\n";
+    //     output += "├─────┼─────┼" + new String('─', descColumnWidth + 2) + "┼──────────┼─────────┼────────────────────────┤\n";
+
+    //     foreach (Todo todo in todos) {
+    //         string idColumn = todo.Id.ToString().PadLeft((idColumnWidth + 1) / 2).PadRight(idColumnWidth);
+    //         string doneColumn = todo.Status ? " [x]".PadRight(5) : " [ ]".PadRight(5);
+    //         string descColumn = todo.Description.PadRight(descColumnWidth);
+    //         string priorityColumn = todo.Priority.ToString().PadRight(8);
+    //         string colorColumn = todo.Color.PadRight(7);
+    //         string createdTimeColumn = todo.GetCreatedTime().ToString().PadRight(22);
+
+    //         output += $"│{idColumn}│{doneColumn}│ {descColumn} │ {priorityColumn} │ {colorColumn} │ {createdTimeColumn} │\n";
+    //     }
+
+    //     output += "└─────┴─────┴" + new String('─', descColumnWidth + 2) + "┴──────────┴─────────┴────────────────────────┘\n";
+
+    //     return output;
+    // }
+
+    public void showTodos() {
         int maxDescriptionWidth = todos.Any() ? todos.Max(t => t.Description.Length) : 0;
         int descColumnWidth = Math.Max("Description".Length, maxDescriptionWidth);
         int idColumnWidth = 5;  // Define your idColumnWidth here. 
@@ -106,14 +158,16 @@ class TodoList
         string idHeader = "ID".PadLeft((idColumnWidth + "ID".Length) / 2).PadRight(idColumnWidth);
         string doneHeader = "Done".PadLeft(("Done".Length + 1) / 2).PadRight(5);
         string descHeader = "Description".PadLeft((descColumnWidth + "Description".Length) / 2).PadRight(descColumnWidth);
-        string colorHeader = "Color".PadLeft((7 + "Color".Length) / 2).PadRight(7);
+        // string colorHeader = "Color".PadLeft((7 + "Color".Length) / 2).PadRight(7);
         string priorityHeader = "Priority".PadLeft((3 + "Priority".Length) / 2).PadRight(5);
         string createdHeader = "Created Time".PadLeft((22 + "Created Time".Length) / 2).PadRight(22);
 
-        string output = "";
-        output += "┌─────┬─────┬" + new String('─', descColumnWidth + 2) + "┬──────────┬─────────┬────────────────────────┐\n";
-        output += $"│{idHeader}│{doneHeader}│ {descHeader} │ {priorityHeader} │ {colorHeader} │ {createdHeader} │\n";
-        output += "├─────┼─────┼" + new String('─', descColumnWidth + 2) + "┼──────────┼─────────┼────────────────────────┤\n";
+        string outputHeader = "";
+        outputHeader += "┌─────┬─────┬" + new String('─', descColumnWidth + 2) + "┬──────────┬────────────────────────┐\n";
+        outputHeader += $"│{idHeader}│{doneHeader}│ {descHeader} │ {priorityHeader} │ {createdHeader} │\n";
+        outputHeader += "├─────┼─────┼" + new String('─', descColumnWidth + 2) + "┼──────────┼────────────────────────┤\n";
+
+        Console.Write(outputHeader);
 
         foreach (Todo todo in todos) {
             string idColumn = todo.Id.ToString().PadLeft((idColumnWidth + 1) / 2).PadRight(idColumnWidth);
@@ -123,12 +177,11 @@ class TodoList
             string colorColumn = todo.Color.PadRight(7);
             string createdTimeColumn = todo.GetCreatedTime().ToString().PadRight(22);
 
-            output += $"│{idColumn}│{doneColumn}│ {descColumn} │ {priorityColumn} │ {colorColumn} │ {createdTimeColumn} │\n";
+            //insert color method here
+            cp.WriteColorLine(todo.Color, $"{idColumn}│{doneColumn}│ {descColumn} │ {priorityColumn} │ {createdTimeColumn} ");
         }
 
-        output += "└─────┴─────┴" + new String('─', descColumnWidth + 2) + "┴──────────┴─────────┴────────────────────────┘\n";
-
-        return output;
+        Console.WriteLine("└─────┴─────┴" + new String('─', descColumnWidth + 2) + "┴──────────┴────────────────────────┘\n");
     }
 
 }
