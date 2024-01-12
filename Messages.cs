@@ -1,5 +1,23 @@
 class Messages
 {
+    string[] colors = {
+        "Black",
+        "DarkBlue",
+        "DarkGreen",
+        "DarkCyan",
+        "DarkRed",
+        "DarkMagenta",
+        "DarkYellow",
+        "Gray",
+        "DarkGray",
+        "Blue",
+        "Green",
+        "Cyan",
+        "Red",
+        "Magenta",
+        "Yellow",
+        "White"
+    };
     public void welcomeMessage() {
         
         Console.WriteLine(@" __          __  _                            _          _______        _        _____ _      _____   _ ");
@@ -52,7 +70,11 @@ class Messages
 
         Console.WriteLine("quit (q)");
         Console.WriteLine("\texit TodoCLI\n");
-    }
 
-    
+        Console.WriteLine("Available colors:");
+        foreach (string color in colors) {
+            Console.Write(color + " ");
+        }
+        Console.WriteLine();
+    }   
 }
