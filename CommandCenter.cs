@@ -24,15 +24,6 @@ class CommandCenter {
 
         while (true) {
 
-            // Console.BackgroundColor = ConsoleColor.Blue;
-            // Console.WriteLine("THIS SHOULD BE A BLUE LINE");
-            // Console.ResetColor();
-            // Console.BackgroundColor = ConsoleColor.White;
-            // Console.WriteLine("THIS SHOULD BE A blank LINE");
-            // Console.BackgroundColor = ConsoleColor.Black;
-            // Console.WriteLine("THIS SHOULD BE A BLACK LINE");
-            
-
             Console.Write(":");
             string? input = Console.ReadLine();
             Console.WriteLine();
